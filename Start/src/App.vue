@@ -20,10 +20,18 @@
         <button @click="selectedComponent='AppNew'">New</button>
         <hr>
         <p>{{selectedComponent}}</p>
-        <component :is="selectedComponent">
+        <keep-alive> <!-- Asegura que el componente no se destruya 
+        cuando cambiamos de un componente a otro -->
+            <component :is="selectedComponent">
+                <!-- Estos componentes tienen 2 lyfecicle hooks que podemos utilizar
+                cuando entramos y cerramos el componente:
+                1. deactivated: al salir del componente
+                2. activated: Al entrar al componente
+                    -->
             <h2 slot="title">{{quoteTitle}}</h2>
             <p slot="content">A wonderful quote!!!</p>
         </component>
+        </keep-alive>
         <!--
         <app-footer>
             <h2 slot="title">{{quoteTitle}}</h2>
