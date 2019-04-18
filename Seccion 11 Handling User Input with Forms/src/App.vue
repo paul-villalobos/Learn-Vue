@@ -11,21 +11,23 @@
                                 type="text"
                                 id="email"
                                 class="form-control"
-                                v-model="email">
+                                v-model.trim="userData.email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input
                                 type="password"
                                 id="password"
-                                class="form-control">
+                                class="form-control"
+                                v-model.lazy="userData.password">
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
                         <input
                                 type="number"
                                 id="age"
-                                class="form-control">
+                                class="form-control"
+                                v-model.number.lazy="userData.age">
                     </div>
 
                 </div>
@@ -37,7 +39,8 @@
                     <textarea
                             id="message"
                             rows="5"
-                            class="form-control"></textarea>
+                            class="form-control"
+                            v-model="msg"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -102,10 +105,10 @@
                         <h4>Your Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Mail: {{email}}</p>
-                        <p>Password:</p>
-                        <p>Age:</p>
-                        <p>Message: </p>
+                        <p>Mail: {{userData.email}}</p>
+                        <p>Password: {{userData.password}}</p>
+                        <p>Age:{{userData.age}}</p>
+                        <p style="white-space:pre;">Message: {{msg}}</p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
                             <li></li>
@@ -124,10 +127,17 @@
     export default {
         data () {
             return {
-                email: ''
+                userData: {
+                    email: '',
+                    password: '',
+                    age:30
+                },
+                msg: 'a new Text'
             }
         }
     }
 </script>
 
 <style>
+
+</style>
